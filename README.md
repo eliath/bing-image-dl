@@ -2,7 +2,8 @@ bing-image-dl
 =========================
 
 A script to download images to bing.
-URGENT: Do not make this repo public. The source code contains a private API key.
+
+**URGENT**: Do not make this repo public. The source code contains a private API key.
 
 Usage
 -----
