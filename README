@@ -1,0 +1,7 @@
+Download Images from Bing
+=========================
+
+Dependencies:
+
+`luarocks install graphicsmagick`
+
