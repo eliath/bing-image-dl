@@ -1,3 +1,4 @@
+#!/usr/bin/env th
 -- Libs
 require 'trepl'
 require 'sys'
