@@ -11,6 +11,6 @@ return {
       _print('[ERROR]',{...},'red')
    end,
    warn = function(...)
-      _print('[WARN]',{...},'orange')
+      _print('[WARN]',{...},'yellow')
    end
 }

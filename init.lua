@@ -17,7 +17,7 @@ local opt = lapp[[
 Retrieve Bing images
    -q,--query     (string)                Query. REQUIRED.
    -a,--args      (default {})            Bing extra arguments in json format
-   -b,--blacklist (default ./blacklist)   Path to a lua file that exports a table of keywords to blacklist
+   -b,--blacklist (default ./blacklist)   Relative path to a file that returns a blacklist as a lua table
    -c,--crop                              Crop as squares
    --cap          (default 10)            Max nb of transactions to execute
    --maxSize      (default 5000)          Fetch images of at most size
@@ -139,7 +139,6 @@ local _CONFIG = {
    verbose = opt.verbose,
    format = 'json' -- parses the output: json -> Lua table
 }
-
 
 -- MAINLINE
 async.fiber(function()
