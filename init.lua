@@ -36,7 +36,7 @@ local formatted_query = opt.query:gsub('%s+', '_'):lower()
 -- Resolve Blacklist
 local ok, blacklist = pcall(require, opt.blacklist)
 if not ok then
-   util.warn('Continuing without blacklist: could not resolve "'..
+   util.warn('✗ Could not resolve blacklist. Continuing without. ['..opt.blacklist..']'..
       opt.blacklist..'"')
    blacklist = {}
 else
