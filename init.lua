@@ -133,9 +133,34 @@ local function printStatus()
    io.flush()
 end
 
+local function printErr(...)
+   local strs = {...}
+   for _,s in ipairs(strs) do
+      print(col.red('[ERROR] '..s))
+   end
+end
+
+--[[ Check the statusCode, Response type, and response body. ]]
+local function validateResponse(res)
+   if res.statusCode and res.statusCode ~= 200 then
+      -- lack of status code assumed to be success
+      printErr('Request status code = '..tostring(res.statusCode))
+      if res.message then printErr(res.message) end
+      os.exit(1)
+   end
+   if res._type ~= 'Images' then
+      printErr('Unexpected response type: "'..tostring(res._type)..'"')
+      os.exit(1)
+   end
+   if not res.value then
+      printErr('Unreadable response:\n', tostring(res), '\n')
+      os.exit(1)
+   end
+end
+
 local _CONFIG = {
    url = 'https://api.cognitive.microsoft.com/bing/v5.0/images/search',
-   headers = { ['Ocp-Apim-Subscription-Key'] = 'd70705762d16402f975ae1f754f168ca' },
+   headers = { ['Ocp-Apim-Subscription-Key'] = '5a963da8aa094ab2b98c5800c9f68259' },
    verbose = opt.verbose,
    format = 'json' -- parses the output: json -> Lua table
 }
@@ -168,8 +193,7 @@ async.fiber(function()
          util.extend({}, _CONFIG, { query = query }))
 
       -- validate results
-      assert(res._type == 'Images', 'Unexpected response type: "'..tostring(res._type)..'"')
-      assert(res.value, 'Unreadable response:\n\n'..tostring(res)..'\n\n')
+      validateResponse(res)
 
       -- assumed to be valid
       dir.makepath(opt.output)
