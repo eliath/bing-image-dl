@@ -6,7 +6,7 @@ require 'pl'
 require 'xlua'
 local async = require 'async'
 local http = require 'socket.http'
-local col = require 'async.repl'.colorize
+local col = require 'trepl.colorize'
 local json = require 'cjson'
 local magick = require 'graphicsmagick'
 local util = require 'moses'
