@@ -5,7 +5,9 @@ A script to programmatically download  large sets of images from bing.
 This script is useful to amass datasets for various image processing tasks.
 
 
-## Prerequisites
+## Getting Started
+
+### Prerequisites
 
 The script runs on [torch7](http://torch.ch/). Make sure you have it installed.
 
@@ -15,9 +17,6 @@ Additional lua packages are required:
     $ luarocks install luasocket
     $ luarocks install moses
     $ luarocks install graphicsmagick
-
-
-## Usage
 
 ### Azure Setup
 
@@ -35,7 +34,8 @@ Follow the steps below to obtain a key from the Azure platform.
   6. Choose _keys_ in the middle column and copy one of the API keys listed
   7. Paste your API key in `credentials.lua`.
 
-### Getting Images
+
+## Usage
 
 Once you have your credentials set up, use `th` to run the script
 from the command line:
@@ -52,6 +52,7 @@ The results will be saved in a folder with the same name as the query.
 Call the script with no arguments to view more usage information:
 
     th init.lua
+
 
 ## Troubleshooting
 
