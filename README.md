@@ -64,7 +64,7 @@ Wait a while and try again.
 
 A full list of error codes can be found [here](https://docs.microsoft.com/en-us/rest/api/cognitiveservices/bing-images-api-v7-reference#error-codes).
 
-If you still have problems, please [open an issue](https://github.com/discretenewyork/bing-image-dl/issues/new).
+If you still have problems, please [open an issue](https://github.com/eliath/bing-image-dl/issues/new).
 
 
 ## Developing
