@@ -10,14 +10,14 @@ local col = require 'trepl.colorize'
 local json = require 'cjson'
 local magick = require 'graphicsmagick'
 local util = require 'moses'
-util.extend(util, require('./utils'))
+util.extend(util, require('./lib/utils'))
 
 -- Argument parser:
 local opt = lapp[[
 Retrieve Bing images
    -q,--query     (string)                Query. REQUIRED.
    -a,--args      (default {})            Bing extra arguments in json format
-   -b,--blacklist (default ./blacklist)   Relative path to a file that returns a blacklist as a lua table
+   -b,--blacklist (default ./lib/blacklist)   Relative path to a file that returns a blacklist as a lua table
    -c,--crop                              Crop as squares
    --cap          (default 10)            Max nb of transactions to execute
    --maxSize      (default 5000)          Fetch images of at most size
@@ -26,12 +26,22 @@ Retrieve Bing images
    -o,--output    (default $query)        output dir
    -s,--start     (default 0)             Offset to start from (to resume downloading)
    -v,--verbose                           Verbose download
+   -k,--key       (default $key)          API access key (overrides credentials.lua)
 ]]
 
 local keyword = opt.query
 print(keyword)
 opt.args = json.decode(opt.args)
 local formatted_query = opt.query:gsub('%s+', '_'):lower()
+
+
+-- Resolve credentials
+local apiKey = opt.key
+if apiKey == '$query' then
+   apiKey = require('./credentials').key
+end
+print('API KEY = '..apiKey)
+
 
 -- Resolve Blacklist
 local ok, blacklist = pcall(require, opt.blacklist)
@@ -159,8 +169,8 @@ local function validateResponse(res)
 end
 
 local _CONFIG = {
-   url = 'https://api.cognitive.microsoft.com/bing/v5.0/images/search',
-   headers = { ['Ocp-Apim-Subscription-Key'] = '5a963da8aa094ab2b98c5800c9f68259' },
+   url = 'https://api.cognitive.microsoft.com/bing/v7.0/images/search',
+   headers = { ['Ocp-Apim-Subscription-Key'] = apiKey },
    verbose = opt.verbose,
    format = 'json' -- parses the output: json -> Lua table
 }
