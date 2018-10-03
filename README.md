@@ -25,14 +25,20 @@ First you will need to get credentials to use the **Bing Image Search API**.
 Follow the steps below to obtain a key from the Azure platform.
 
   1. Set up a free [Microsoft Azure account](https://azure.microsoft.com/en-us/free/)
+
   2. Go to the [Azure portal](https://portal.azure.com/) and choose _Create A Resource_
+
   3. Search and select _Bing Search v7_, then click _Create_
+
   4. Give the resource a name and choose a pricing tier.
-    1. The free tier is fine but rate-limited to 3 calls per second
-    2. Create a new resource group if necessary
+     1. The free tier is fine but rate-limited to 3 calls per second
+     2. Create a new resource group if necessary
+
   5. Next, in the sidebar, go to _All Resources_ and click the name
      of the resource you just created
+
   6. Choose _keys_ in the middle column and copy one of the API keys listed
+
   7. Paste your API key in `credentials.lua`.
 
 ### Getting Images
